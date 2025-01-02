@@ -1,0 +1,20 @@
+// ==========================================================================
+//  Footer Styles
+// ==========================================================================
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.copyright-footer {
+    display: flex;
+    align-self: center;
+    margin: 0;
+    padding: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

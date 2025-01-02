@@ -1,0 +1,61 @@
+// ==========================================================================
+//  Mixins
+// ==========================================================================
+
+// Color Mixins
+@mixin theme-color-1 {
+    color: #493628;
+}
+@mixin theme-color-2 {
+    color: #AB886D;
+}
+@mixin theme-color-3 {
+    color: #D6C0B3;
+}
+@mixin theme-color-4 {
+    color: #E4E0E1;
+}
+
+// Background Color Mixins
+@mixin theme-bg-color-1 {
+    background-color: #493628;
+}
+@mixin theme-bg-color-2 {
+    background-color: #AB886D;
+}
+@mixin theme-bg-color-3 {
+    background-color: #D6C0B3;
+}
+@mixin theme-bg-color-4 {
+    background-color: #E4E0E1;
+}
+
+
+// Header Mixins
+
+.header-container {
+    @include theme-bg-color-1;
+    @include theme-color-4;
+}
+
+
+// Main Mixins
+
+.container {
+    @include theme-bg-color-3;
+}
+
+.image-generator-container {
+    @include theme-bg-color-2;
+}
+
+
+// Footer Mixins
+
+.footer-container {
+    @include theme-bg-color-1;
+}
+
+.copyright-footer {
+    @include theme-color-4;
+}

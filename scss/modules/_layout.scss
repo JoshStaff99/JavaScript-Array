@@ -1,0 +1,26 @@
+// ==========================================================================
+//  Index Styles
+// ==========================================================================
+body {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    background-color: #CCDDE2;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    text-align: center;
+}
