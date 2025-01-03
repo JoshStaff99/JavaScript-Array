@@ -17,9 +17,10 @@ a {
 
 .container {
     background-color: #CCDDE2;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     padding: 40px;
     text-align: center;

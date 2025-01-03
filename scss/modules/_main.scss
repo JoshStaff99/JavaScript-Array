@@ -4,13 +4,18 @@
 
 // Image Generator Container
 .image-generator-container {
+    max-width: 500px;
+    min-width: 333px;
     padding: 20px;
     box-shadow: 0px 10px 35px rgba(0,0,0,.4);
+    align-self: center;
 }
 
 // Image form Container
 .form-container {
     padding-top: 20px;
+    display: flex;
+    justify-content: center;
 }
 
 .form {
@@ -23,10 +28,39 @@
     text-align: center;
 }
 
+.email-form {
+    min-width: 300px;
+}
+
 // Image Interface Container
 .row {
     display: flex;
     flex-direction: row;
     padding-top: 20px;
     justify-content: space-between;
+    justify-content: center;
+}
+
+// Image Collection Container
+.image-collection-container {
+    min-width: 333px;
+    width: fit-content;
+    padding: 20px;
+    box-shadow: 0px 10px 35px rgba(0,0,0,.4);
+    width: 100%;
+    margin-top: 20px;
+    height: auto;
+    align-self: center;
+}
+
+.collection-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.image-collection {
+  padding: 20px; 
+  height: auto;
 }

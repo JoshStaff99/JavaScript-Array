@@ -49,6 +49,13 @@
     @include theme-bg-color-2;
 }
 
+.image-collection-container {
+    @include theme-bg-color-2;
+}
+
+.image-collection {
+    @include theme-bg-color-3;
+}
 
 // Footer Mixins
 

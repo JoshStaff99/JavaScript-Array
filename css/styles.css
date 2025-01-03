@@ -14,9 +14,10 @@ a {
 
 .container {
   background-color: #CCDDE2;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   padding: 40px;
   text-align: center;
@@ -31,12 +32,17 @@ a {
 }
 
 .image-generator-container {
+  max-width: 500px;
+  min-width: 333px;
   padding: 20px;
   box-shadow: 0px 10px 35px rgba(0, 0, 0, 0.4);
+  align-self: center;
 }
 
 .form-container {
   padding-top: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .form {
@@ -49,11 +55,40 @@ a {
   text-align: center;
 }
 
+.email-form {
+  min-width: 300px;
+}
+
 .row {
   display: flex;
   flex-direction: row;
   padding-top: 20px;
   justify-content: space-between;
+  justify-content: center;
+}
+
+.image-collection-container {
+  min-width: 333px;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 20px;
+  box-shadow: 0px 10px 35px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  margin-top: 20px;
+  height: auto;
+  align-self: center;
+}
+
+.collection-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.image-collection {
+  padding: 20px;
+  height: auto;
 }
 
 .footer-container {
@@ -78,7 +113,7 @@ a {
   display: block;
   padding: 2px;
   border: 2px solid #493628;
-  font-size: 15px;
+  font-size: 12px;
   height: auto;
   text-align: center;
   line-height: 1;
@@ -98,6 +133,14 @@ a {
 
 .image-generator-container {
   background-color: #AB886D;
+}
+
+.image-collection-container {
+  background-color: #AB886D;
+}
+
+.image-collection {
+  background-color: #D6C0B3;
 }
 
 .footer-container {
