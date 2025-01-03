@@ -59,3 +59,10 @@
 .copyright-footer {
     @include theme-color-4;
 }
+
+// Buttons
+
+.interface-btn {
+    @include theme-bg-color-3;
+    //@include theme-color-4;
+}

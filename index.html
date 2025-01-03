@@ -22,7 +22,19 @@
         <main>
             <div class="container">
                 <div class="image-generator-container">
-
+                    <div class="random-image-container">
+                        <img id="random-image" alt="random-image" src="https://picsum.photos/300/400">
+                    </div>
+                    <form class="form-container" name="contactForm" id="contactFormSubmit" onsubmit="return validateForm()" method="post">
+                        <div class="email-form">
+                            <input class="form" id="emailAd" type="text" name="emailaddress" placeholder="Please Enter Your Email Address*" required>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <a class="interface-btn">Generate Random Image</a>
+                        <a class="btn-submit interface-btn" id="submitBtn" value="Submit">Add Image to Collection</a>
+                        <a class="Go-to-image-collection interface-btn">View Image Collection</a>
+                    </div>
                 </div>
             </div>
         </main>
@@ -30,11 +42,12 @@
         <footer>
             <div class="footer-container">
                 <div class="copyright-footer">
-                    <small>@ Copyright Joshua Stafford 2024</small>
+                    <small>@ Copyright Joshua Stafford 2025</small>
                 </div>
             </div>
         </footer>
 
+        <script src="js/jquery-3.7.1.min.js"></script>
         <script src="js/main.js"></script>
     </body>
 
