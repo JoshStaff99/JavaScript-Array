@@ -23,7 +23,7 @@
             <div class="container">
                 <div class="image-generator-container">
                     <div class="random-image-container">
-                        <img id="random-image" alt="random-image" src="https://picsum.photos/300/400">
+                        <img id="random-image" alt="random-image" src="https://picsum.photos/seed/300/400">
                     </div>
                     <form class="form-container" name="contactForm" id="contactFormSubmit" onsubmit="return validateForm()" method="post">
                         <div class="email-form">
@@ -31,16 +31,19 @@
                         </div>
                     </form>
                     <div class="row">
-                        <a class="interface-btn">Generate Random Image</a>
+                        <a class="generate-image-btn interface-btn" id="random-image-generate">Generate Random Image</a>
                         <a class="btn-submit interface-btn" id="submitBtn" value="Submit">Add Image to Collection</a>
                         <a class="Go-to-image-collection interface-btn">View Image Collection</a>
                     </div>
                 </div>
                 <div class="image-collection-container">
                     <div class="collection-btns">
-                        <a class="interface-btn">Generate Random Image</a>
-                        <a class="interface-btn" id="submitBtn" value="Submit">Add Image to Collection</a>
-                        <a class="Go-to-image-collection interface-btn">View Image Collection</a>
+                        <a class="interface-btn">Delete Collection</a>
+                        <select class="collection-selection interface-btn">
+                            <option value="" disabled="" selected="">Select An Email</option>
+                        </select>
+                        
+                        <a class="Go-to-image-collection interface-btn">Delete All Collections</a>
                     </div>
                     <div class="image-collection">
 
