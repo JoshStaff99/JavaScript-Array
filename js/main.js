@@ -14,6 +14,9 @@ const imageResolution = "/300/400";
 const $form_EmailAddress = $('#emailAd');
 let isValidEmailAddress = ()=> /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($form_EmailAddress.val());
 
+// Global Arrays
+var emailList = [];
+
 
 //////////
 // Email Vaildator
@@ -29,7 +32,6 @@ function validateForm() {
     alert("Not a valid email address");
     return false;
   } else {
-    event.preventDefault();
     return true;
   }
 }
@@ -47,14 +49,33 @@ $submitBtn.on('click', function(event){
 
 // Prevents the page from refreshing when you click on the "Add Email" button
 const $emailAdd = $('.add-email-btn');
+// Get the value of the email input field
+const emailValue = $("#emailAd").val();
   
 $emailAdd.on('click', function(event){
   if (validateForm() ) {
+    // Add the value to the email array
+    emailList.push(emailValue);
+    // Adds the email to the dropdown menu
+    $("#email-dropdown").append(`<option value="${emailValue}">${emailValue}</option>`);
+    // Optional: Show the updated array in the console
+    console.log(emailList);
+
     alert('Email Added')
     //$('#contactFormSubmit')[0].reset();
   } else
   event.preventDefault();
 });
+
+////////
+// Email Drop Down Function
+////////
+// Adds each email value to the dropdown menu on page load
+$(document).ready(function(){
+  emailList.forEach(function(item) {
+    $("#email-dropdown").append(`<option value="${item}">${item}</option>`);
+  });
+})
 
 
 ////////
@@ -85,3 +106,13 @@ $(document).ready(function () {
 //              }
  
 //          });
+
+// // Adds emails to an array 
+// $("#myForm").on('click', function(event) {
+//   event.preventDefault();  // Prevent the form from submitting
+
+//   // Get the value of the input field
+//   const inputValue = $("#myInput").val();
+
+//   // Add the value to the array
+//   myArray.push(inputValue);
