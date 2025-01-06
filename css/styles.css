@@ -122,6 +122,12 @@ a {
   margin: 5px;
 }
 
+@media (min-width: 600px) {
+  .interface-btn {
+    padding: 10px;
+  }
+}
+
 .header-container {
   background-color: #493628;
   color: #E4E0E1;
