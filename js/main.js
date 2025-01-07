@@ -148,3 +148,12 @@ $('#email-dropdown').on('change', function() {
   const selectedEmail = $(this).val();
   displayImagesForEmail(selectedEmail);
 });
+$('#email-dropdown').on('click', function() {
+  const selectedEmail = $(this).val();
+  displayImagesForEmail(selectedEmail);
+});
+
+// $('#email-dropdown').ready('', function() {
+//   const selectedEmail = $(this).val();
+//   displayImagesForEmail(selectedEmail);
+// });

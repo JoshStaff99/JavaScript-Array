@@ -1,3 +1,42 @@
 // ==========================================================================
 //  Java Script Styles
 // ==========================================================================
+
+// Image collection styles
+.image-collection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sub-picture-container {
+    padding-bottom: 5px;
+}
+
+.chosen-image {
+    max-width: 300px;
+    max-height: 300px;
+}
+
+// media queries
+
+.chosen-image {
+    @media (min-width: 600px) {
+        max-width: none;
+        max-height: none;
+    }
+}
+
+.image-collection {
+    @media (min-width: 800px) {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+.sub-picture-container {
+    @media (min-width: 800px) {
+        padding-bottom: 10px;
+    }
+}
