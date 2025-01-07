@@ -15,7 +15,7 @@ const $form_EmailAddress = $('#emailAd');
 let isValidEmailAddress = ()=> /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($form_EmailAddress.val());
 
 // Global Arrays
-var emailList = [];
+let emailList = [];
 
 
 //////////
@@ -49,11 +49,11 @@ $submitBtn.on('click', function(event){
 
 // Prevents the page from refreshing when you click on the "Add Email" button
 const $emailAdd = $('.add-email-btn');
-// Get the value of the email input field
-const emailValue = $("#emailAd").val();
   
 $emailAdd.on('click', function(event){
   if (validateForm() ) {
+    // Get the value of the email input field
+    let emailValue = $("#emailAd").val();
     // Add the value to the email array
     emailList.push(emailValue);
     // Adds the email to the dropdown menu
