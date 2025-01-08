@@ -35,6 +35,14 @@ function validateForm() {
     return true;
   }
 }
+////////////
+/// Prevents the user from submitting the email form by pressing enter
+////////////
+jQuery.each($("#contactFormSubmit").find('input'), function(){
+  $(this).bind('keypress keydown keyup', function(e){
+     if(e.keyCode == 13) { e.preventDefault();  alert('Please use the "add image to collection button"'); }
+  });
+});
 
 //////////
 // Submit Image Function
@@ -70,7 +78,7 @@ $submitBtn.on('click', function(event) {
       $("#email-dropdown").append(`<option value="${emailValue}">${emailValue}</option>`);
     }
 
-    // Optional: Show the updated array in the console
+    // Show the updated array in the console
     console.log(emailList);
   } else {
     event.preventDefault();
@@ -186,7 +194,7 @@ $('#clear-current-email').on('click', function() {
   // Update localStorage with the new collections object
   localStorage.setItem('image-Collections', JSON.stringify(collections));
 
-  // Optionally: Update the dropdown menu and image collection display
+  // Update the dropdown menu and image collection display
   $(`#email-dropdown option[value="${selectedEmail}"]`).remove();
 
   // Clear the images associated with the selected email from the display
