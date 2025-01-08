@@ -35,6 +35,7 @@ function validateForm() {
     return true;
   }
 }
+
 ////////////
 /// Prevents the user from submitting the email form by pressing enter
 ////////////
@@ -78,6 +79,9 @@ $submitBtn.on('click', function(event) {
       $("#email-dropdown").append(`<option value="${emailValue}">${emailValue}</option>`);
     }
 
+    // Select the email that just had an image added
+    $('#email-dropdown').val(emailValue); // Select the email in dropdown
+    
     // Show the updated array in the console
     console.log(emailList);
   } else {
@@ -166,7 +170,7 @@ $('.btn-submit').on('click', function() {
 });
 
 ///////////////
-/// clearing local storage on click 
+// clearing local storage on click 
 //////////////
 
 $('#clear-all-btn').on('click', function() {
