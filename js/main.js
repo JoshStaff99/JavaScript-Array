@@ -83,7 +83,7 @@ $submitBtn.on('click', function(event) {
     $('#email-dropdown').val(emailValue); // Select the email in dropdown
     
     // Show the updated array in the console
-    console.log(emailList);
+    //console.log(emailList);
   } else {
     event.preventDefault();
   }
@@ -120,12 +120,12 @@ $submitBtn.on('click', function() {
   emailList.forEach(item => {
     if (!Array.isArray(collections[item])) {
       collections[item] = [];
-      console.log(`Created an array for ${item}`);
+      //console.log(`Created an array for ${item}`);
     }
   });
 
   // Log the arrays for verification
-  console.log(collections);
+  //console.log(collections);
 });
 
 // Display Images for Selected Email
