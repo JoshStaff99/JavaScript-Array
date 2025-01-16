@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .sub-picture-container {
@@ -17,19 +17,23 @@
 .chosen-image {
     max-width: 300px;
     max-height: 300px;
+    padding: 5px;
+}
+
+.email-dropdown {
+    padding: 10px;
 }
 
 // media queries
-
 .chosen-image {
-    @media (min-width: 600px) {
+    @media (min-width: 1260px) {
         max-width: none;
         max-height: none;
     }
 }
 
 .image-collection {
-    @media (min-width: 800px) {
+    @media (min-width: 600px) {
         flex-direction: row;
         flex-wrap: wrap;
     }

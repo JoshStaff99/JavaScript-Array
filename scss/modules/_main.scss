@@ -64,3 +64,10 @@
   padding: 20px; 
   height: auto;
 }
+
+// Media queries
+.mobile-collection-btns {
+    @media (min-width: 600px) {
+        display: none;
+    }
+}

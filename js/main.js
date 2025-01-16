@@ -207,3 +207,41 @@ $('#clear-current-email').on('click', function() {
   // Alert user
   alert(`Collection for ${selectedEmail} has been cleared`);
 });
+
+///////
+// Mobile View Buttons
+//////
+// clearing local storage on click 
+$('#clear-all-btn-mobile').on('click', function() {
+  localStorage.clear()
+  alert(`All collections have been cleared`);
+  location.reload();
+});
+
+// Clear the collection for the selected email
+$('#clear-current-email-mobile').on('click', function() {
+  // Get the selected email from the dropdown
+  const selectedEmail = $('#email-dropdown').val();
+  
+  // If no email is selected, alert the user and exit
+  if (!selectedEmail) {
+    alert('Please select an email to clear its collection');
+    return;
+  }
+
+  
+  // Remove the collection for the selected email from localStorage
+  delete collections[selectedEmail];
+
+  // Update localStorage with the new collections object
+  localStorage.setItem('image-Collections', JSON.stringify(collections));
+
+  // Update the dropdown menu and image collection display
+  $(`#email-dropdown option[value="${selectedEmail}"]`).remove();
+
+  // Clear the images associated with the selected email from the display
+  displayImagesForEmail(null);
+
+  // Alert user
+  alert(`Collection for ${selectedEmail} has been cleared`);
+});

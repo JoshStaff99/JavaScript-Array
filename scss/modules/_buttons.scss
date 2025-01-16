@@ -16,14 +16,35 @@
     margin: 5px;
 }
 
-.interface-btn {
-    @media (min-width: 600px) {
-        padding: 10px;
-    }
+.interface-btn-large {
+    display: none;
+}
+
+.btn-collection-mobile {
+    padding: 10px;
 }
 
 // Hover Effect
 .interface-btn:hover {
     background-color: #493628;
     border-color: black;
+}
+
+// Media queries
+.interface-btn {
+    @media (min-width: 600px) {
+        padding: 10px;
+    }
+}
+
+.btn-collection-mobile {
+    @media (min-width: 600px) {
+        display: none;
+    }
+}
+
+.interface-btn-large  {
+    @media (min-width: 600px) {
+        display: block;
+    }
 }
