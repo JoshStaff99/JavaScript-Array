@@ -21,46 +21,72 @@ let emailValue = $("#emailAd").val();
 // Check if collections exist in localStorage
 let collections = JSON.parse(localStorage.getItem('image-Collections')) || {};
 
+///////
 // Function to validate email address
+//////
 function validateForm() {
   let emailaddressForm = document.forms["contactForm"]["emailaddress"].value;
-  
+
   if (emailaddressForm == "") {
-    alert("Email Address must be filled out");
+    displayMessage("Email Address must be filled out", "error");
     return false;
   } else if (!isValidEmailAddress()) {
-    alert("Not a valid email address");
+    displayMessage("Not a valid email address", "error");
     return false;
   } else {
     return true;
   }
 }
 
-////////////
-/// Prevents the user from submitting the email form by pressing enter
-////////////
+//////
+// Prevents the user from submitting the email form by pressing enter
+/////
 jQuery.each($("#contactFormSubmit").find('input'), function(){
   $(this).bind('keypress keydown keyup', function(e){
-     if(e.keyCode == 13) { e.preventDefault();  alert('Please use the "add image to collection button"'); }
+     if(e.keyCode == 13) { e.preventDefault();  displayMessage('Please use the "add image to collection button"', "error"); }
   });
 });
 
+///////
+// Function to display messages in the alert box
+///////
+function displayMessage(message, type) {
+  const alertBox = $('#alert-box');
+  alertBox.text(message);  // Set the message text
+
+  // Set the class based on success or error
+  if (type === "error") {
+    alertBox.removeClass("success").addClass("error");
+  } else if (type === "success") {
+    alertBox.removeClass("error").addClass("success");
+  }
+
+  alertBox.show();  // Show the alert box
+  setTimeout(() => {
+    alertBox.fadeOut();  // Fade out the alert box after 3 seconds
+  }, 3000);
+}
 //////////
-// Submit Image Function
+// Submit Image Function 
 /////////
 const $submitBtn = $('.btn-submit');
 
 $submitBtn.on('click', function(event) {
   const randomImage = document.getElementById('random-image');
   const imageUrl = randomImage.src;
-  if (validateForm()) {
-    alert('Image Added to Collection');
-    // Get the random image URL
-    const randomSeed = Math.floor(Math.random() * 1000);
-    randomImage.src = `${picsumSeed}${randomSeed}${imageResolution}`;
 
-    // Get the value of the email input field
+  if (validateForm()) {
     let emailValue = $("#emailAd").val();
+
+    // Check if the image already exists in the collection for this email
+    if (collections[emailValue] && collections[emailValue].includes(imageUrl)) {
+      displayMessage('This image has already been added to your collection.', "error");
+      return;  // Exit the function without adding the image
+    }
+
+    // If it's a new image, proceed to add it to the collection
+    displayMessage('Image Added to Collection', "success");
+    
     // Add the value to the email array
     emailList.push(emailValue);
 
@@ -81,25 +107,35 @@ $submitBtn.on('click', function(event) {
 
     // Select the email that just had an image added
     $('#email-dropdown').val(emailValue); // Select the email in dropdown
-    
-    // Show the updated array in the console
-    //console.log(emailList);
   } else {
     event.preventDefault();
   }
 });
 
-////////
+///////
 // Email Drop Down Function
-////////
+//////
 $(document).ready(function() {
   // Add existing emails to the dropdown from the collections in localStorage
   Object.keys(collections).forEach(function(item) {
     $("#email-dropdown").append(`<option value="${item}">${item}</option>`);
   });
+
+  // When an email is selected in the dropdown, update the email input field
+  $('#email-dropdown').on('change', function() {
+    const selectedEmail = $(this).val();
+    
+    // Update the input field with the selected email
+    $('#emailAd').val(selectedEmail);
+    
+    // Displays the image collection for the selected email
+    displayImagesForEmail(selectedEmail);
+  });
 });
 
+/////
 // Image Generation
+////
 $(document).ready(function () {
   const randomImage = document.getElementById('random-image');
   const randomSeed = Math.floor(Math.random() * 1000);
@@ -120,12 +156,8 @@ $submitBtn.on('click', function() {
   emailList.forEach(item => {
     if (!Array.isArray(collections[item])) {
       collections[item] = [];
-      //console.log(`Created an array for ${item}`);
     }
   });
-
-  // Log the arrays for verification
-  //console.log(collections);
 });
 
 // Display Images for Selected Email
@@ -169,79 +201,57 @@ $('.btn-submit').on('click', function() {
   displayImagesForEmail(selectedEmail);
 });
 
-///////////////
-// clearing local storage on click 
-//////////////
-
+// Clearing local storage on click 
 $('#clear-all-btn').on('click', function() {
-  localStorage.clear()
-  alert(`All collections have been cleared`);
+  localStorage.clear();
+  displayMessage('All collections have been cleared', "success");
   location.reload();
 });
 
-////////
-// Clear the collection for the selected email
-////////
-$('#clear-current-email').on('click', function() {
-  // Get the selected email from the dropdown
-  const selectedEmail = $('#email-dropdown').val();
-  
-  // If no email is selected, alert the user and exit
-  if (!selectedEmail) {
-    alert('Please select an email to clear its collection');
-    return;
-  }
-
-  // Remove the collection for the selected email from localStorage
-  delete collections[selectedEmail];
-
-  // Update localStorage with the new collections object
-  localStorage.setItem('image-Collections', JSON.stringify(collections));
-
-  // Update the dropdown menu and image collection display
-  $(`#email-dropdown option[value="${selectedEmail}"]`).remove();
-
-  // Clear the images associated with the selected email from the display
-  displayImagesForEmail(null);
-
-  // Alert user
-  alert(`Collection for ${selectedEmail} has been cleared`);
-});
-
-///////
-// Mobile View Buttons
 //////
-// clearing local storage on click 
-$('#clear-all-btn-mobile').on('click', function() {
-  localStorage.clear()
-  alert(`All collections have been cleared`);
-  location.reload();
-});
-
 // Clear the collection for the selected email
-$('#clear-current-email-mobile').on('click', function() {
-  // Get the selected email from the dropdown
+//////
+$('#clear-current-email').on('click', function() {
   const selectedEmail = $('#email-dropdown').val();
   
-  // If no email is selected, alert the user and exit
   if (!selectedEmail) {
-    alert('Please select an email to clear its collection');
+    displayMessage('Please select an email to clear its collection', "error");
     return;
   }
 
-  
-  // Remove the collection for the selected email from localStorage
   delete collections[selectedEmail];
-
-  // Update localStorage with the new collections object
   localStorage.setItem('image-Collections', JSON.stringify(collections));
 
-  // Update the dropdown menu and image collection display
   $(`#email-dropdown option[value="${selectedEmail}"]`).remove();
 
-  // Clear the images associated with the selected email from the display
   displayImagesForEmail(null);
 
-  // Alert user
-  alert(`Collection for ${selectedEmail} has been cleared`);
+  displayMessage(`Collection for ${selectedEmail} has been cleared`, "success");
+});
+
+/////////
+// Mobile View Buttons
+////////
+$('#clear-all-btn-mobile').on('click', function() {
+  localStorage.clear();
+  displayMessage('All collections have been cleared', "success");
+  location.reload();
+});
+
+$('#clear-current-email-mobile').on('click', function() {
+  const selectedEmail = $('#email-dropdown').val();
+  
+  if (!selectedEmail) {
+    displayMessage('Please select an email to clear its collection', "error");
+    return;
+  }
+
+  delete collections[selectedEmail];
+  localStorage.setItem('image-Collections', JSON.stringify(collections));
+
+  $(`#email-dropdown option[value="${selectedEmail}"]`).remove();
+
+  displayImagesForEmail(null);
+
+  displayMessage(`Collection for ${selectedEmail} has been cleared`, "success");
 });
